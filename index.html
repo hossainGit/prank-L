@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find out the Biggest Lewra of AIUB</title>
+    <title>Webtech project</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 20%;
-            background-color: #c1e6ff;
+            background-color: #f4f4f9;
         }
         h1 {
             color: #333;
@@ -26,7 +26,7 @@
         button:hover {
             background-color: #0056b3;
         }
-    </style>s
+    </style>
 </head>
 <body>
     <h1>Find out the Biggest Lewra of Aiub</h1>
@@ -34,8 +34,22 @@
 
     <script>
         function findIdiot() {
-            // Redirects to the user's Facebook profile page
-            window.location.href = "https://www.facebook.com/profile.php";
+            // Use a deep link for mobile compatibility
+            const fbProfileUrl = "https://www.facebook.com/profile.php";
+            const fbAppDeepLink = "fb://profile";
+
+            // Try to open Facebook app via deep link
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                window.location.href = fbAppDeepLink;
+                setTimeout(() => {
+                    // Fallback to web URL if the app is not installed
+                    window.location.href = fbProfileUrl;
+                }, 1500);
+            } else {
+                // For desktop browsers, just redirect to the web version
+                window.location.href = fbProfileUrl;
+            }
         }
     </script>
 </body>
